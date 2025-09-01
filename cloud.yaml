@@ -1,0 +1,134 @@
+proxy-providers:
+  Cats:
+    type: http
+    url: https://raw.githubusercontent.com/Mushfiqtaief/ConfigXCats/refs/heads/main/Catsx.txt
+    interval: 60
+    path: ./providers/Cats.yaml
+
+proxy-groups:
+  - name: "ECats"
+    type: select
+    proxies:
+      - "All Cats"
+      - "CircleFTP"
+      - "Nagordola"
+      - "SamFTP"
+      - "ShowTime"
+      - "FtpBD"
+      - "IccFTP"
+      - "TimePassBD"
+      - "Discovery"
+      - "CloudTV"
+      - "EBox"
+      - "CtgHall"
+
+  - name: "All Cats"
+    type: load-balance
+    strategy: round-robin
+    url: http://1.1.1.1
+    interval: 3
+    use:
+      - Cats
+
+  - name: CircleFTP
+    type: load-balance
+    strategy: round-robin
+    url: http://1.1.1.1
+    interval: 3
+    filter: "CircleFTP"
+    use:
+      - Cats
+
+  - name: Nagordola
+    type: load-balance
+    strategy: round-robin
+    url: http://1.1.1.1
+    interval: 3
+    filter: "Nagordola"
+    use:
+      - Cats
+
+  - name: SamFTP
+    type: load-balance
+    strategy: round-robin
+    url: http://1.1.1.1
+    interval: 3
+    filter: "SamFTP"
+    use:
+      - Cats
+
+  - name: ShowTime
+    type: load-balance
+    strategy: round-robin
+    url: http://1.1.1.1
+    interval: 3
+    filter: "ShowTime"
+    use:
+      - Cats
+
+  - name: FtpBD
+    type: load-balance
+    strategy: round-robin
+    url: http://1.1.1.1
+    interval: 3
+    filter: "FtpBD"
+    use:
+      - Cats
+
+  - name: IccFTP
+    type: load-balance
+    strategy: round-robin
+    url: http://1.1.1.1
+    interval: 3
+    filter: "IccFTP"
+    use:
+      - Cats
+
+  - name: TimePassBD
+    type: load-balance
+    strategy: round-robin
+    url: http://1.1.1.1
+    interval: 3
+    filter: "TimePassBD"
+    use:
+      - Cats
+
+  - name: Discovery
+    type: load-balance
+    strategy: round-robin
+    url: http://1.1.1.1
+    interval: 3
+    filter: "Discovery"
+    use:
+      - Cats
+
+  - name: CloudTV
+    type: load-balance
+    strategy: round-robin
+    url: http://1.1.1.1
+    interval: 3
+    filter: "CloudTV"
+    use:
+      - Cats
+
+  - name: EBox
+    type: load-balance
+    strategy: round-robin
+    url: http://1.1.1.1
+    interval: 3
+    filter: "EBox"
+    use:
+      - Cats
+
+  - name: CtgHall
+    type: load-balance
+    strategy: round-robin
+    url: http://1.1.1.1
+    interval: 3
+    filter: "CtgHall"
+    use:
+      - Cats
+
+rules:
+  - NETWORK,UDP,DIRECT
+  - MATCH,ECats
